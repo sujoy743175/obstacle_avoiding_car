@@ -1,0 +1,3 @@
+def on_rx():
+        print("rx: ", uart.read().decode().strip())
+
