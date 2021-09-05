@@ -82,4 +82,3 @@ See the [article on Medium](https://medium.com/@ronald.dehuysser/micropython-ota
 ## Example
 - [Showerloop](https://github.com/rdehuyss/showerloop/blob/master/main.py) uses the micropython-ota-updater to get the latest release.
 - [Chicken Shed Mgr](https://github.com/rdehuyss/chicken-shed-mgr/blob/main/src/main.py) uses the micropython-ota-updater to get the latest release.
-# obstacle_avoiding_car
