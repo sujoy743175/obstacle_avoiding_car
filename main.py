@@ -4,5 +4,8 @@ from app.connect_and_update import connectToWifiAndUpdate
 connectToWifiAndUpdate()
 
 while True:
-    start()   
+    start()
+    
+    
+
 

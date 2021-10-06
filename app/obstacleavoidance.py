@@ -18,10 +18,11 @@ enableRPin = PWM(Pin(14), freq=300, duty=650)
 #enableRPin.duty_u16(65025)
 
 def move_forward():
-    motorLPin1.off()
-    motorLPin2.on()
-    motorRPin1.off()
-    motorRPin2.on()
+    motorLPin1.value(0)
+    motorLPin2.value(1)
+    motorRPin1.value(0)
+    motorRPin2.value(1)
+
 
 def move_backward():
     motorLPin1.on()
@@ -57,51 +58,4 @@ def turn_left():
 def avoid():
     
     while True:
-
-        distance_cm()
-        
-        if (inputPin.value() == 1 and inputPinR.value() == 1):
-            move_forward()
-            #print("moving forward")
-            
-        elif (inputPin.value() == 1 and inputPinR.value() == 0):
-            move_stop()
-            print("moving stop")
-            time.sleep(0.5)
-            move_backward()
-            print("moving backward")
-            time.sleep(1)    
-            move_stop()
-            print("moving stop")
-            time.sleep(0.5)
-            turn_left()
-            print("moving left")
-
-        elif (inputPin.value() == 0 and inputPinR.value() == 1):
-            move_stop()
-            print("moving stop")
-            time.sleep(0.5)
-            move_backward()
-            print("moving backward")
-            time.sleep(1)    
-            move_stop()
-            print("moving stop")
-            time.sleep(0.5)
-            turn_right()    
-            print("moving right")
-
-        elif (inputPin.value() == 0 and inputPinR.value() == 0):
-            move_stop()
-            print("moving stop")
-            time.sleep(0.5)
-            move_backward()
-            print("moving backward")
-            time.sleep(1)    
-            move_stop()
-            print("moving stop")
-            turn_right()    
-            print("moving right") 
-            
-
-
-
+        move_forward()
