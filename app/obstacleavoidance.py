@@ -9,6 +9,7 @@ def avoid():
         forward()
 
     else:
+        backward()
         turnRihgt()
 
 
