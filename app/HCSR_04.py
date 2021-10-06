@@ -1,7 +1,7 @@
 import machine, time
 from machine import Pin
 
-class HCSR04:
+class HCSR04(object):
     def __init__(self, trigger_pin, echo_pin, echo_timeout_us=500*2*30):
         self.echo_timeout_us = echo_timeout_us
         #init trigger pin(out)
