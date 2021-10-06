@@ -3,21 +3,28 @@
 # Project: Test L298 Dual H-bridge, MicroPython
 # Description:
 
-from app.l298 import LM298
+from app.l298 import LM298, RM298
 from utime import sleep
 
 def work():
     
-        motor = LM298(2, 4, 5)
-        motor.set_speed(500)
-        motor.forward()
+        motorL = LM298(25, 27, 26)
+        motorR = RM298(14, 13, 12)
+        motorL.set_speed(500)
+        motorR.set_speed(500)
+        motorL.forward()
+        motorR.forward()
         print('ok')
         sleep(2)
-        motor.set_speed(200)
-        motor.forward()
+        motorL.set_speed(200)
+        motorR.set_speed(200)
+        motorL.forward()
+        motorR.forward()
         sleep(2)
-        motor.stop()
-        motor.reverse()
+        motorL.stop()
+        motorR.stop()
+        motorL.reverse()
+        motorR.reverse()
         sleep(2)
-        motor.stop()
-
+        motorL.stop()
+        motorR.stop()       
