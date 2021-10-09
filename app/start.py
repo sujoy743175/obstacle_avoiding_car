@@ -5,7 +5,7 @@ from app.obstacleavoidance import avoid
 def start():
     #print('now its working..')
     #blink()
-    avoid()
+    #avoid()
     #work()
 
 
