@@ -6,14 +6,22 @@ sensor = HCSR04(32, 35)
 
 def avoid():
     forward_distance = sensor.distance_cm()
-    '''if forward_distance >= 10:
+    print(forward_distance)
+    
+    if forward_distance <= 5:
+        forward_distance = 10
+        
+    if forward_distance >= 201:
+        forward_distance = 200
+    
+    if forward_distance >= 10:
         forward()
 
     else:
         backward()
-        turnRihgt()'''
-    print(forward_distance)
-    sleep(2)
+        turnRihgt()
+    
+
 
 
 

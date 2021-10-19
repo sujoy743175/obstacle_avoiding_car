@@ -18,26 +18,34 @@ def forward():
 def backward():
     motorL.stop()
     motorR.stop()
-    sleep(2)
+    sleep(0.5)
     motorL.reverse()            
     motorR.reverse()
-    sleep(2)
+    sleep(0.5)
     motorL.stop()
     motorR.stop()
 
 def turnRihgt():
     motorL.forward()
     motorR.reverse()
-    sleep(2)
+    sleep(0.5)
     motorL.forward()
     motorR.forward() 
 
 def turnLeft():
     motorL.reverse()
     motorR.forward()
-    sleep(2)
+    sleep(0.5)
     motorL.forward()
     motorR.forward()
+    
+def work():
+    turnRihgt()
+
+    
+    
+    
+
 
 
 
