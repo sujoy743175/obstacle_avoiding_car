@@ -27,9 +27,12 @@ def read_distance():
         dec_right = float(my_right)
         my_back = int.from_bytes(back, "big")
         dec_back = float(my_back)
-
-        print(dec_fwd)
+        return dec_fwd
+       
+        
+        '''print(dec_fwd)
         print(dec_left)
         print(dec_right)
-        print(dec_back)
+        print(dec_back)'''
+
     sleep(.2)
