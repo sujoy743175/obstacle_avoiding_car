@@ -11,16 +11,16 @@ def avoid():
 
     
 
-    if distance_fwd >= 10:
+    if distance_fwd >= 10 or distance_fwd ==0:
         forward()
 
-    elif distance_fwd <10 and distance_left > distance_right:
+    elif distance_fwd !=0 and distance_fwd <10 and distance_left > distance_right:
         backward()
         turnLeft()
-    elif distance_fwd < 10 and distance_left < distance_right:
+    elif distance_fwd !=0 and distance_fwd < 10 and distance_left < distance_right:
         backward()
         turnRihgt
-    elif distance_fwd < 10 and distance_left == distance_right:
+    elif distance_fwd !=0 and distance_fwd < 10 and distance_left == distance_right:
         backward()
         turnRihgt()
 
