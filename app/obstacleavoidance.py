@@ -4,15 +4,27 @@ from utime import sleep
 from app.I2c import *
 
 def avoid():
-    forward_distance = read_distance()
+    x = read_distance()    
+    distance_fwd, distance_left, distance_right, distance_back = x
+    y = distance_back
+    sleep(.3)
+
     
-    if forward_distance >= 10:
+
+    if distance_fwd >= 10:
         forward()
 
-    else:
+    elif distance_fwd <10 and distance_left > distance_right:
+        backward()
+        turnLeft()
+    elif distance_fwd < 10 and distance_left < distance_right:
+        backward()
+        turnRihgt
+    elif distance_fwd < 10 and distance_left == distance_right:
         backward()
         turnRihgt()
-    print(forward_distance)
+
+  
     
 
 

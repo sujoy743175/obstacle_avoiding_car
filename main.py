@@ -6,6 +6,5 @@ connectToWifiAndUpdate()
 while True:
     start()
     
-    
 
 

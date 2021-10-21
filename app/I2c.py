@@ -9,6 +9,7 @@ scl_pin = machine.Pin(22)
 i2c = machine.I2C(1, sda=sda_pin, scl=scl_pin, freq = 400000)
 
 Arduino_add = 8
+dec_fwd =''
 def read_distance():    
     val = i2c.readfrom(Arduino_add, 1)    
     my_str= int.from_bytes(val, "big")    
@@ -27,12 +28,14 @@ def read_distance():
         dec_right = float(my_right)
         my_back = int.from_bytes(back, "big")
         dec_back = float(my_back)
-        return dec_fwd
+        return dec_fwd, dec_left, dec_right, dec_back
        
         
-        '''print(dec_fwd)
-        print(dec_left)
-        print(dec_right)
-        print(dec_back)'''
+        #print(dec_fwd)
+        #print(dec_left)
+        #print(dec_right)
+        #print(dec_back)
 
-    sleep(.2)
+   
+
+
