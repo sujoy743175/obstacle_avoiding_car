@@ -9,33 +9,38 @@ scl_pin = machine.Pin(22)
 i2c = machine.I2C(1, sda=sda_pin, scl=scl_pin, freq = 400000)
 
 Arduino_add = 8
-dec_fwd =''
+
 def read_distance():    
-    val = i2c.readfrom(Arduino_add, 1)    
-    my_str= int.from_bytes(val, "big")    
-    dec = float(my_str)
-    if dec == 255:
+    '''byte_val = i2c.readfrom(Arduino_add, 1)
+
+    str_val= int.from_bytes(byte_val, "big")    
+    float_val = float(str_val)'''
+    byte_val = i2c.readfrom(Arduino_add, 1)    
+    float_val= int.from_bytes(byte_val, "big")    
+    decimal_val = float(float_val)
+    if decimal_val == 255:
         fwd = i2c.readfrom(Arduino_add, 1)
         left = i2c.readfrom(Arduino_add, 1)
         right = i2c.readfrom(Arduino_add, 1)
-        back = i2c.readfrom(Arduino_add, 1)
-    
-        my_fwd= int.from_bytes(fwd, "big")
-        dec_fwd = float(my_fwd)
-        my_left = int.from_bytes(left, "big")
-        dec_left = float(my_left)
-        my_right = int.from_bytes(right, "big")
-        dec_right = float(my_right)
-        my_back = int.from_bytes(back, "big")
-        dec_back = float(my_back)
-        return dec_fwd, dec_left, dec_right, dec_back
+        back = i2c.readfrom(Arduino_add, 1)    
+
+        distance_fwd = int.from_bytes(fwd, "big" )
+        distance_forward = float(distance_fwd)
+
+        distance_lft = int.from_bytes(left, "big" )
+        distance_left = float(distance_lft)
+
+        distance_rt = int.from_bytes(right, "big" )
+        distance_right = float(distance_rt)
        
-        
-        #print(dec_fwd)
-        #print(dec_left)
-        #print(dec_right)
-        #print(dec_back)
+
+        return distance_forward, distance_left, distance_right
+    
+        '''print(distance_forward)
+        print(distance_left)
+        print(distance_right)'''
 
    
+
 
 
