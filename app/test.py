@@ -47,4 +47,3 @@ def turnLeft():
     sleep(0.05)    
     motorL.forward()
     motorR.forward()
-

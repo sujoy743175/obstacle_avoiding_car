@@ -5,7 +5,7 @@ from app.I2c import *
 
 def avoid():
     x = read_distance()
-    print(x)
+    #print(x)
     distance_fwd, distance_left, distance_right = x
     threshold_distance = 15    
        
@@ -19,9 +19,9 @@ def avoid():
     if distance_right == 0:
         distance_right = threshold_distance
         
-    print (distance_fwd)
+    '''print (distance_fwd)
     print(distance_left)
-    print(distance_right)
+    print(distance_right)'''
     sleep(0.05)
             
     
@@ -44,4 +44,5 @@ def avoid():
         turnRihgt()
 
   
+
 
