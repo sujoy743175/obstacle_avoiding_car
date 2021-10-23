@@ -22,7 +22,9 @@ def read_distance():
         fwd = i2c.readfrom(Arduino_add, 1)
         left = i2c.readfrom(Arduino_add, 1)
         right = i2c.readfrom(Arduino_add, 1)
-        back = i2c.readfrom(Arduino_add, 1)    
+        back = i2c.readfrom(Arduino_add, 1)
+        leftLimit = i2c.readfrom(Arduino_add, 1)
+        rightLimit = i2c.readfrom(Arduino_add, 1)
 
         distance_fwd = int.from_bytes(fwd, "big" )
         distance_forward = float(distance_fwd)
@@ -32,15 +34,22 @@ def read_distance():
 
         distance_rt = int.from_bytes(right, "big" )
         distance_right = float(distance_rt)
+        
+        limit_left = int.from_bytes(leftLimit, "big" )
+        Left_Limit = float(limit_left)
+        
+        limit_right = int.from_bytes(rightLimit, "big" )
+        Right_Limit = float(limit_right)
        
 
-        return distance_forward, distance_left, distance_right
+        return distance_forward, distance_left, distance_right, Left_Limit, Right_Limit
     
         '''print(distance_forward)
         print(distance_left)
         print(distance_right)'''
 
    
+
 
 
 
