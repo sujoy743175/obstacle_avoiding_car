@@ -22,7 +22,7 @@ def avoid():
     '''print (distance_fwd)
     print(distance_left)
     print(distance_right)'''
-    sleep(0.05)
+    #sleep(0.05)
             
     
     if distance_fwd >= threshold_distance and Left_Limit == 1 and Right_Limit == 1:
@@ -59,6 +59,7 @@ def avoid():
         turnRihgt()
 
   
+
 
 
 

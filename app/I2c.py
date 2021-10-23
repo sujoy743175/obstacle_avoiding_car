@@ -46,9 +46,12 @@ def read_distance():
     
         '''print(distance_forward)
         print(distance_left)
-        print(distance_right)'''
+        print(distance_right)
+        print(Left_Limit)
+        print(Right_Limit)'''
 
    
+
 
 
 
