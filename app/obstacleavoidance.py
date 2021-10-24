@@ -6,7 +6,7 @@ from app.I2c import *
 def avoid():
     x = read_distance()
     #print(x)
-    distance_fwd, distance_left, distance_right, Left_Limit, Right_Limit  = x
+    distance_fwd, distance_left, distance_right, Left_Limit, Right_Limit, Left_Distance, Right_Distance = x
     threshold_distance = 15    
        
 
@@ -43,6 +43,14 @@ def avoid():
         backward()
         turnLeft()
         print("........Both limits")
+    
+    if Left_Distance == 0 and  Right_Distance == 0:
+        print("........speed 0")
+        backward()
+        turnLeft()
+        
+
+
         
     elif distance_fwd < threshold_distance and distance_left > distance_right:
         #print("going left")
@@ -59,6 +67,7 @@ def avoid():
         turnRihgt()
 
   
+
 
 
 
