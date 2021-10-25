@@ -12,8 +12,9 @@ def start():
     avoid()
     #sleep(.02)
     #read_distance()
-    sleep(0.05)
+    #sleep(0.30)
     
     
+
 
 

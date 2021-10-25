@@ -10,11 +10,8 @@ i2c = machine.I2C(1, sda=sda_pin, scl=scl_pin, freq = 400000)
 
 Arduino_add = 8
 
-def read_distance():    
-    '''byte_val = i2c.readfrom(Arduino_add, 1)
-
-    str_val= int.from_bytes(byte_val, "big")    
-    float_val = float(str_val)'''
+def read_distance():
+    sleep(.30)    
     byte_val = i2c.readfrom(Arduino_add, 1)    
     float_val= int.from_bytes(byte_val, "big")    
     decimal_val = float(float_val)
@@ -60,3 +57,4 @@ def read_distance():
         print(Left_Distancee)
         print ("right distance")
         print(Right_Distancee)'''
+
