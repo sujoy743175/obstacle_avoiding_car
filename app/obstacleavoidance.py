@@ -2,10 +2,12 @@ from app.test import *
 from app.HCSR_04 import HCSR04
 from utime import sleep
 from app.I2c import *
+star_time = 0
 
 def avoid():
+    global star_time
     x = read_distance()
-    #print(x)
+    print(x)
     distance_fwd, distance_left, distance_right, Left_Limit, Right_Limit, Left_Distance, Right_Distance = x
     threshold_distance = 15         
 
@@ -25,7 +27,7 @@ def avoid():
     if distance_fwd >= threshold_distance and (Left_Limit == 1 and Right_Limit == 1) and (Left_Distance !=0 or Right_Distance !=0):
         forward()
         #print("forward")    
-    if Left_Limit == 0 and  Right_Limit == 1:
+    if Left_Limit == 0 or  Right_Limit == 0:
         print("........Left limit")
         backward()
         turnRihgt()      
@@ -36,11 +38,20 @@ def avoid():
     if Left_Limit == 0 and  Right_Limit == 0:
         print("........Both limits")
         backward()
-        turnLeft()  
-    if Left_Distance == 0 and  Right_Distance == 0:
+        turnLeft()     
+
+    if Left_Distance == 0.0 and  Right_Distance == 0.0 and star_time >=10:
         print("........speed 0")
         backward()
-        turnLeft()        
+        turnLeft()     
+        star_time = 0
+
+    if Left_Distance == 0 and  Right_Distance == 0:
+        star_time = star_time + 1 
+        
+    if (Left_Distance != 0 or  Right_Distance != 0)or (Left_Distance != 0 and Right_Distance != 0):
+        star_time = 0
+       
     elif distance_fwd < threshold_distance and distance_left > distance_right:
         #print("going left")
         backward()
@@ -55,5 +66,12 @@ def avoid():
         turnRihgt()        
     else:
         forward()
+    print (star_time)
+    print ("left_distance")
+    print(Left_Distance)
+    print ("right_distance")
+    print(Right_Distance)
+
+
 
 
