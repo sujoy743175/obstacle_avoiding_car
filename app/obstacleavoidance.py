@@ -27,10 +27,18 @@ def avoid():
     if distance_fwd >= threshold_distance and (Left_Limit == 1 and Right_Limit == 1) and (Left_Distance !=0 or Right_Distance !=0):
         forward()
         #print("forward")    
-    if Left_Distance < 6 or Right_Distance < 15:
+    if Right_Distance <5 and distance_left > distance_right:
         print("........Reducing Speed")
         backward()
-        turnRihgt()  
+        turnLeft()
+    if Right_Distance <5 and distance_left < distance_right:
+        print("........Reducing Speed")
+        backward()
+        turnRihgt()
+    if Right_Distance <5 and distance_left == distance_right:
+        print("........Reducing Speed equal")
+        backward()
+        turnRihgt()
     if Left_Limit == 0 and  Right_Limit == 1:
         print("........Left limit")
         backward()
@@ -75,6 +83,7 @@ def avoid():
     print(Left_Distance)
     print ("Right speed ... alias...right_distance")
     print(Right_Distance)
+
 
 
 
