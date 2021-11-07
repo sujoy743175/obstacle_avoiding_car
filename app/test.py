@@ -14,39 +14,35 @@ motorR.set_speed(1000)
 def forward():
     print("moving forward")
     motorL.forward()
-    motorR.forward()  
+    motorR.forward()
 
-def backward():
+def stop():
     motorL.stop()
     motorR.stop()
-    sleep(0.05)
+    sleep(0.05)    
+
+def backward():
+    stop()
     motorL.reverse()            
     motorR.reverse()
     sleep(.5)
-    motorL.stop()
-    motorR.stop()
+    stop()   
 
 def turnRihgt():
     print("turning right")
-    print("version ........2.2.4")
+    print("version ........2.2.5")
     motorL.forward()
     motorR.reverse()
     sleep(0.4)
-    motorL.stop()
-    motorR.stop()
-    sleep(0.05)
-    motorL.forward()
-    motorR.forward() 
+    stop()
+    forward()
 
 def turnLeft():
     print("turning left")
     motorL.reverse()
     motorR.forward()
-    sleep(.4)
-    motorL.stop()
-    motorR.stop()
-    sleep(0.05)    
-    motorL.forward()
-    motorR.forward()
+    sleep(0.4)
+    stop()
+    forward()
 
 

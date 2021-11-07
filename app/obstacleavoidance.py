@@ -27,7 +27,11 @@ def avoid():
     if distance_fwd >= threshold_distance and (Left_Limit == 1 and Right_Limit == 1) and (Left_Distance !=0 or Right_Distance !=0):
         forward()
         #print("forward")    
-    if Left_Limit == 0 or  Right_Limit == 0:
+    if Left_Distance < 6 or Right_Distance < 15:
+        print("........Reducing Speed")
+        backward()
+        turnRihgt()  
+    if Left_Limit == 0 and  Right_Limit == 1:
         print("........Left limit")
         backward()
         turnRihgt()      
@@ -52,24 +56,24 @@ def avoid():
     if (Left_Distance != 0 or  Right_Distance != 0)or (Left_Distance != 0 and Right_Distance != 0):
         star_time = 0
        
-    elif distance_fwd < threshold_distance and distance_left > distance_right:
+    if distance_fwd < threshold_distance and distance_left > distance_right:
         #print("going left")
         backward()
         turnLeft()        
-    elif distance_fwd < threshold_distance and distance_left < distance_right:
+    if distance_fwd < threshold_distance and distance_left < distance_right:
         #print("going right")
         backward()
         turnRihgt()
-    elif distance_fwd < threshold_distance and distance_left == distance_right:
+    if distance_fwd < threshold_distance and distance_left == distance_right:
         #print("going right")
         backward()
         turnRihgt()        
-    else:
-        forward()
+    '''else:
+        forward()'''
     print (star_time)
-    print ("left_distance")
+    print ("Left speed ... alias...left_distance")
     print(Left_Distance)
-    print ("right_distance")
+    print ("Right speed ... alias...right_distance")
     print(Right_Distance)
 
 

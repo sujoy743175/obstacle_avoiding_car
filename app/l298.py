@@ -28,3 +28,4 @@ class LM298(object):
 
     def set_speed(self, speed):
         self.speed = min(1023, max(0, speed))
+
