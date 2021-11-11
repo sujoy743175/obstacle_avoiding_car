@@ -8,8 +8,9 @@ def avoid():
     global star_time
     x = read_distance()
     print(x)
-    distance_fwd, distance_left, distance_right, Battery_Voltage, Left_Limit, Right_Limit, Left_Distance, Right_Distance = x
-    threshold_distance = 15         
+    distance_fwd, distance_left, distance_right, voltage, Left_Limit, Right_Limit, Left_Distance, Right_Distance = x
+    threshold_distance = 15
+    volt = voltage/10
 
     if distance_fwd == 0:
         distance_fwd = threshold_distance 
@@ -17,7 +18,8 @@ def avoid():
         distance_left = threshold_distance 
     if distance_right == 0:
         distance_right = threshold_distance
-    
+    if Right_Distance == 0:
+        Right_Distance = 7
         
     '''print (distance_fwd)
     print(distance_left)
@@ -84,8 +86,8 @@ def avoid():
     print(Left_Distance)
     print ("Right speed ... alias...right_distance")
     print(Right_Distance)
-    print ("Battery voltage remaining ...................")
-    print(Battery_Voltage)
+    print ("voltage........................")
+    print(volt)
 
 
 
