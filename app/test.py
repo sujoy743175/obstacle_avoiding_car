@@ -12,7 +12,7 @@ motorL.set_speed(1000)
 motorR.set_speed(1000)
 
 def forward():
-    print("moving forward")
+    #print("moving forward")
     motorL.forward()
     motorR.forward()
 

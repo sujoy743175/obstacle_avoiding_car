@@ -82,9 +82,9 @@ void loop() {
   value = analogRead(voltageSensor);
   vOUT = (value * 5.0) / 1024.0;
   vIN = vOUT / (R2/(R1+R2));
- // Serial.print("Input = ");
-  //Serial.println(voltage);
-  voltage = vIN*10;
+ // Serial.print("Input = "); 
+  //Serial.println(voltage); // if executed it will send wrong voltage mesurement to master esp32
+  voltage = (vIN -2.7)*10 ;
   
 }
 
@@ -203,9 +203,9 @@ void LeftSpeed() {
   leftDistance = leftTic * (21.4 / 28); // circumference of wheel = 21.4 cm and no of tic on left is 28
   //int leftSpeed = (leftDistance / (leftTime * 60000));   // /min
   leftOldtime = millis();
-  Serial.println(leftDistance); // WITHOUT PRINTING THIS ERRORS FOUND IN ESP32 REPL
-  Serial.println(rightDistance); // WITHOUT PRINTING THIS ERRORS FOUND IN ESP32 REPL
-    Serial.println(" cm/min");
+  //Serial.println(leftDistance); // WITHOUT PRINTING THIS ERRORS FOUND IN ESP32 REPL
+ // Serial.println(rightDistance); // WITHOUT PRINTING THIS ERRORS FOUND IN ESP32 REPL
+    //Serial.println(" cm/min");
   leftTic = 0;
 
 
