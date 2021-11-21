@@ -1,6 +1,15 @@
 // Include NewPing Library for HC-SR04 sensor
 #include <NewPing.h>
 #include <Wire.h>
+const int voltageSensor = A0;
+
+float vOUT = 0.0;
+float vIN = 0.0;
+float R1 = 30000.0;
+float R2 = 7500.0;
+int value = 0;
+byte voltage;
+
 // Hook up 4 HC-SR04 sensors in 1-pin mode
 // Sensor 0
 #define TRIGGER_PIN_0  8
@@ -40,14 +49,14 @@ int bcount = 0;
 
 float leftTic = 0;
 float rightTic = 0;
-//byte leftSpeed ;
-//byte rightSpeed ;
+byte leftSpeed ;
+byte rightSpeed ;
 int leftOldtime = 0;
 int rightOldtime = 0;
 int leftTime ;
 int rightTime ;
-byte leftDistance;
-byte rightDistance;
+int leftDistance;
+int rightDistance;
 const byte interruptPinLeft = 2;
 const byte interruptPinRight = 3;
 
@@ -69,6 +78,14 @@ void loop() {
   RightSpeed();
   LeftSpeed();
   readDistance();
+
+  value = analogRead(voltageSensor);
+  vOUT = (value * 5.0) / 1024.0;
+  vIN = vOUT / (R2 / (R1 + R2));
+  //Serial.print("Input = ");
+  //Serial.println(voltage);
+  voltage = vIN * 10;
+
 }
 
 // function that executes whenever data is received from master
@@ -101,7 +118,7 @@ void requestEvent() {
       val = distance[2];
       break;
     case 4:
-      val = distance[3];
+      val = voltage;
       break;
     case 5:
       val = distance[4];
@@ -146,11 +163,12 @@ void readDistance()
   }
   delay(20);
 
-  distance[3] = sensor3.ping_cm();
-  if (distance[3] > 254 ) {
+
+  /*distance[3] = voltage;
+    if (distance[3] > 254 ) {
     distance[3] = 254;
-  }
-  delay(20);
+    }
+    delay(20);*/
 
   distance[4] = digitalRead(leftLimitPin);
   delay(20);
@@ -158,15 +176,15 @@ void readDistance()
   distance[5] = digitalRead(rightLimitPin);
   delay(20);
 
-  distance[6] = leftDistance;
-  distance[7] = rightDistance;
+  distance[6] = leftSpeed;
+  distance[7] = rightSpeed;
   delay(20);
-/*Serial.print("Distance...............");
-Serial.println(distance[0]);
-Serial.print("Distance...............");
-Serial.println(distance[1]);
-Serial.print("Distance...............");
-Serial.println(distance[2]);*/
+  /*Serial.print("Distance...............");
+    Serial.println(distance[0]);
+    Serial.print("Distance...............");
+    Serial.println(distance[1]);
+    Serial.print("Distance...............");
+    Serial.println(distance[2]);*/
 
 }
 
@@ -182,31 +200,35 @@ void rightIsr() {
 void LeftSpeed() {
   detachInterrupt(digitalPinToInterrupt(interruptPinLeft));
   leftTime = millis() - leftOldtime;
-  leftDistance = leftTic * (21.4 / 28); // circumference of wheel = 21.4 cm and no of tic on left is 28
-  //int leftSpeed = (leftDistance / (leftTime * 60000));   // /min
+  leftDistance = leftTic * (21.4 / 16); // circumference of wheel = 21.4 cm and no of tic on left is 16
+  leftSpeed = ((leftDistance * 60000) / leftTime ) / 100; // /min
   leftOldtime = millis();
-  Serial.println(leftDistance); // WITHOUT PRINTING THIS ERRORS FOUND IN ESP32 REPL
-  Serial.println(rightDistance); // WITHOUT PRINTING THIS ERRORS FOUND IN ESP32 REPL
-    Serial.println(" cm/min");
+  /*Serial.println(leftTime); // WITHOUT PRINTING THIS ERRORS FOUND IN ESP32 REPL
+    Serial.println(leftOldtime); // WITHOUT PRINTING THIS ERRORS FOUND IN ESP32 REPL
+    Serial.println(leftDistance);*/
+  Serial.print("Left speed.....   ");
+  Serial.print(leftSpeed);
+  Serial.println(" Meter/min");
   leftTic = 0;
 
 
   attachInterrupt(digitalPinToInterrupt (interruptPinLeft), leftIsr, RISING);
-  return leftDistance;
+  return leftSpeed;
 }
 
 void RightSpeed() {
   detachInterrupt(digitalPinToInterrupt(interruptPinRight));
   rightTime = millis() - rightOldtime;
-  rightDistance = rightTic * (21.4 / 28); // circumference of wheel = 21.4 cm and no of tic on left is 28
-  //int rightSpeed =  (rightDistance/rightTime)  ;//rightDistance / (rightTime * 60000));   // /min
+  rightDistance = rightTic * (21.4 / 16); // circumference of wheel = 21.4 cm and no of tic on left is 16
+  rightSpeed = ((rightDistance * 60000) / rightTime ) / 100; // /min
   rightOldtime = millis();
-  /*Serial.print(rightSpeed);
-    Serial.println(" cm/min");*/
+  Serial.print("Right speed.....   ");
+  Serial.print(rightSpeed);
+  Serial.println(" Meter/min");
   rightTic = 0;
 
 
   attachInterrupt(digitalPinToInterrupt (interruptPinRight), rightIsr, RISING);
-  return rightDistance;
+  return rightSpeed;
 
 }
