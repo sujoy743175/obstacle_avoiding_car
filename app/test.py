@@ -8,8 +8,8 @@ from utime import sleep
 
 motorL = LM298(25, 26, 27)
 motorR = LM298(14, 12, 13)
-motorL.set_speed(1000)
-motorR.set_speed(1000)
+motorL.set_speed(900)
+motorR.set_speed(900)
 
 def forward():
     #print("moving forward")

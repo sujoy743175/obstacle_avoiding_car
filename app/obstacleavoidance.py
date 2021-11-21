@@ -12,7 +12,7 @@ def avoid():
     x = read_distance()
     print(x)
     distance_fwd, distance_left, distance_right, voltage, Left_Limit, Right_Limit, left_wheel_speed, right_wheel_speed = x
-    threshold_distance = 20    
+    threshold_distance = 25    
     volt = voltage/10
 
     if distance_fwd == 0:
